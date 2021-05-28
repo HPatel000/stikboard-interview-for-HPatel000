@@ -11,6 +11,26 @@ body {
   color: #4b5563;
 }
 
+.badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 2rem;
+}
+
+.badge__green {
+  background-color: #def7ec;
+  color: #03543f;
+}
+
+.badge__red {
+  background-color: #fde2e1;
+  color: #981b1c;
+}
+
+.badge__yellow {
+  background-color: #fef3c7;
+  color: #92400f;
+}
+
 .form__page {
   height: 100vh;
   display: flex;
@@ -63,7 +83,7 @@ body {
 
 .header {
   padding: 1rem;
-  box-shadow: 0px 1px 3px 0px #0000001a;
+  box-shadow: 0px 0px 3px 0px #0000001a;
 }
 .header__logo {
   display: block;
@@ -73,6 +93,19 @@ body {
 .logout__btn {
   cursor: pointer;
   float: right;
+  margin-top: -1.5rem;
+}
+
+.fliters {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem;
+}
+
+.fliters__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 table {
@@ -82,6 +115,7 @@ table {
   border-radius: 6px;
   border-collapse: collapse;
   font-size: 0.8rem;
+  position: relative;
 }
 
 th,
@@ -92,4 +126,84 @@ td {
 th {
   background-color: #f4f5f7;
   text-align: left;
+}
+
+.modal__show {
+  display: block;
+}
+
+.modal__hide {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__content {
+  position: inherit;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  font-size: 0.8rem;
+  padding: 2rem;
+  width: max-content;
+  max-width: 50%;
+}
+
+.modal__close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 3rem;
+  width: 3rem;
+  background-color: transparent;
+  color: #4b5563;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.modal__header img {
+  width: 6rem;
+  height: 6rem;
+}
+
+.modal__header h3 {
+  font-size: 1rem;
+}
+
+.modal__para {
+  margin: 1rem 0;
+}
+
+.modal__para a {
+  text-decoration: none;
+}
+
+.modal__info__row {
+  display: flex;
+  gap: 2rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+.modal__info__row:not(:last-child) {
+  border-bottom: 1px solid #e4e4e7;
+}
+
+.modal__info__row p:first-child {
+  width: 10rem;
 }
