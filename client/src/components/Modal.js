@@ -64,7 +64,12 @@ const Modal = ({ setModalShow, setModalData, data }) => {
         </div>
         <div className='modal__info__row'>
           <p>Launch Date</p>
-          <p>{data.launch_date_utc}</p>
+          <p>
+            {new Date(data.launch_date_utc)
+              .toISOString()
+              .replace(/T/, ' at ')
+              .replace(/\..+/, '')}
+          </p>
         </div>
         <div className='modal__info__row'>
           <p>Payload Type</p>

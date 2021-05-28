@@ -36,6 +36,7 @@ const GlobalState = props => {
         type: 'ERROR',
         payload: err.response.data.msg,
       })
+      setTimeout(() => dispatch({ type: 'REMOVE_ERROR' }), 4000)
     }
   }
 
@@ -61,6 +62,7 @@ const GlobalState = props => {
         type: 'ERROR',
         payload: err.response.data.msg,
       })
+      setTimeout(() => dispatch({ type: 'REMOVE_ERROR' }), 4000)
     }
   }
 

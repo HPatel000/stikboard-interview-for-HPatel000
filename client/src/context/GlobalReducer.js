@@ -13,6 +13,11 @@ export default (state, action) => {
         ...state,
         error: action.payload,
       }
+    case 'REMOVE_ERROR':
+      return {
+        ...state,
+        error: null,
+      }
     default:
       return state
   }

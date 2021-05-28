@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Signup = props => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { userSignup, user } = useContext(GlobalContext)
+  const { userSignup, user, error } = useContext(GlobalContext)
 
   const fromSubmitted = async e => {
     e.preventDefault()
@@ -16,11 +16,12 @@ const Signup = props => {
     if (user) {
       props.history.push('/')
     }
-  }, [user])
+  }, [user, error])
 
   return (
     <div className='form__page'>
       <h1>Sign Up</h1>
+      {error && <p className='form_error'>{error}</p>}
       <form onSubmit={fromSubmitted}>
         <label htmlFor='email'>Email</label>
         <input
