@@ -46,9 +46,19 @@ body {
   color: currentColor;
   cursor: pointer;
 }
+
 .submit__btn:hover {
   background-color: #4b5563;
   color: #fff;
+}
+
+.form__page p {
+  margin-top: 1rem;
+}
+
+.redirectlink {
+  text-decoration: none;
+  color: #005288;
 }
 
 .header {
@@ -59,10 +69,8 @@ body {
   display: block;
   margin: auto;
 }
-.form__page p {
-  margin-top: 1rem;
-}
-.redirectlink {
-  text-decoration: none;
-  color: #005288;
+
+.logout__btn {
+  cursor: pointer;
+  float: right;
 }

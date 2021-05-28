@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react'
+import React, { Fragment, useContext, useEffect } from 'react'
+import Header from '../components/Header'
 import GlobalContext from '../context/GlobalContext'
 
 const Dashboard = props => {
@@ -8,7 +9,11 @@ const Dashboard = props => {
       props.history.push('/signin')
     }
   }, [user])
-  return <div>Dashboard</div>
+  return (
+    <Fragment>
+      <Header />
+    </Fragment>
+  )
 }
 
 export default Dashboard
