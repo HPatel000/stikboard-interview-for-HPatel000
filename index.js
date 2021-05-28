@@ -16,3 +16,6 @@ mongoose
     app.listen(port, () => console.log(`server started at port ${port}`))
   })
   .catch(err => console.log(err))
+
+// routes
+app.use('/auth', require('./routes/authRoute'))
