@@ -1,16 +1,23 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import GlobalContext from '../context/GlobalContext'
+import { Link } from 'react-router-dom'
 
-const Signin = () => {
+const Signin = props => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { userLogin } = useContext(GlobalContext)
+  const { userLogin, user } = useContext(GlobalContext)
 
   const fromSubmitted = async e => {
     e.preventDefault()
     userLogin(email, password)
   }
+
+  useEffect(() => {
+    if (user) {
+      props.history.push('/')
+    }
+  }, [user])
 
   return (
     <div className='form__page'>
@@ -43,6 +50,10 @@ const Signin = () => {
           Sign In
         </button>
       </form>
+      <p>Don't have an account?</p>
+      <Link className='redirectlink' to='/signup'>
+        Sign Up
+      </Link>
     </div>
   )
 }

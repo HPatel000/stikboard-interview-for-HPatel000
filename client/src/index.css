@@ -59,3 +59,10 @@ body {
   display: block;
   margin: auto;
 }
+.form__page p {
+  margin-top: 1rem;
+}
+.redirectlink {
+  text-decoration: none;
+  color: #005288;
+}
