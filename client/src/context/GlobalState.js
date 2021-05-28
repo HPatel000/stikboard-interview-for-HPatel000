@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import GlobalReducer from './GlobalReducer'
-import GlobalContext from './GLobalContext'
+import GlobalContext from './GlobalContext'
 import axios from 'axios'
 
 const GlobalState = props => {
@@ -23,17 +23,17 @@ const GlobalState = props => {
 
     try {
       const res = await axios.post(
-        './auth/signup',
+        '/auth/signup',
         JSON.stringify({ email, password }),
         config
       )
       dispatch({
-        type: SIGNUP_USER,
+        type: 'SIGNUP_USER',
         payload: res.data,
       })
     } catch (err) {
       dispatch({
-        type: ERROR,
+        type: 'ERROR',
         payload: err.response.data.msg,
       })
     }
@@ -48,17 +48,17 @@ const GlobalState = props => {
 
     try {
       const res = await axios.post(
-        '/auth/login',
+        '/auth/signin',
         JSON.stringify({ email, password }),
         config
       )
       dispatch({
-        type: LOGIN_USER,
+        type: 'LOGIN_USER',
         payload: res.data,
       })
     } catch (err) {
       dispatch({
-        type: ERROR,
+        type: 'ERROR',
         payload: err.response.data.msg,
       })
     }

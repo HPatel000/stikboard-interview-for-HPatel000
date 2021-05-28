@@ -10,7 +10,6 @@ router.post('/signup', async (req, res) => {
     if (user) {
       return res.status(400).json({ msg: 'user already exists' })
     }
-
     user = await User.create({ email, password })
     res.status(201).json({ user })
   } catch (err) {
