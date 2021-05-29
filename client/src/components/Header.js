@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import GlobalContext from '../context/GlobalContext'
 
 const Header = () => {
+  const { logout } = useContext(GlobalContext)
   return (
     <div className='header'>
       <svg
@@ -55,7 +57,9 @@ const Header = () => {
           </clipPath>
         </defs>
       </svg>
-      <a className='logout__btn'>Logout</a>
+      <a onClick={() => logout()} className='logout__btn'>
+        Logout
+      </a>
     </div>
   )
 }

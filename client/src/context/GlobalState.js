@@ -66,6 +66,12 @@ const GlobalState = props => {
     }
   }
 
+  const logout = () => {
+    dispatch({
+      type: 'LOGOUT',
+    })
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -74,6 +80,7 @@ const GlobalState = props => {
         error: state.error,
         userSignup,
         userLogin,
+        logout,
       }}
     >
       {props.children}

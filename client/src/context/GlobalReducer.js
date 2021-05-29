@@ -18,6 +18,11 @@ export default (state, action) => {
         ...state,
         error: null,
       }
+    case 'LOGOUT':
+      return {
+        ...state,
+        user: null,
+      }
     default:
       return state
   }

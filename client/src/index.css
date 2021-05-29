@@ -46,7 +46,7 @@ body {
 
 .form__page label {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .form__input {
@@ -109,7 +109,7 @@ body {
 .fliters {
   display: flex;
   justify-content: space-between;
-  margin: 3rem 0;
+  margin: 2rem 0;
 }
 
 .fliters__item {
@@ -122,7 +122,6 @@ table {
   margin: auto;
   border: 1px solid #e4e4e7;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
   border-collapse: collapse;
   font-size: 0.8rem;
   position: relative;
@@ -145,26 +144,17 @@ th {
   list-style: none;
   outline: none;
   border: 1px solid #e4e4e7;
-  padding: 0.5rem 0;
+  padding: 0.2rem 0;
   border-radius: 0.3rem;
+  font-size: 0.8rem;
 }
 .pagination > .active > a {
   background-color: #e4e4e7;
-  color: #fff;
 }
 .pagination > li > a {
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 0.5rem;
   outline: none;
   cursor: pointer;
-}
-.pagination > .active > a {
-  background-color: #4b5563;
-  border-color: #4b5563;
-  outline: none;
-}
-.pagination > li > a,
-.pagination > li > span {
-  color: #4b5563;
 }
 
 .modal__show {
@@ -182,7 +172,7 @@ th {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #1f293785;
 }
 
 .modal__content {
@@ -245,4 +235,42 @@ th {
 
 .modal__info__row p:first-child {
   width: 10rem;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown__content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #222;
+  min-width: max-content;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px 0px #0000001a;
+  z-index: 1;
+}
+
+.dropdown__content button {
+  border: none;
+  background-color: #fff;
+  text-align: left;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  display: block;
+  color: #4b5563;
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.dropdown__content button:hover {
+  background-color: #f4f5f7;
+}
+
+.dropdown__show {
+  display: block;
 }
