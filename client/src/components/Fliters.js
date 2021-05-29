@@ -3,10 +3,13 @@ import axios from 'axios'
 import GlobalContext from '../context/GlobalContext'
 
 const Fliters = ({ setLaunchData }) => {
-  const { loading, setloading } = useContext(GlobalContext)
+  const { setloading } = useContext(GlobalContext)
 
   const [dropdown, setDropdown] = useState(false)
   const [dropdownTitle, setDropdownTitle] = useState('All Launches')
+
+  const [datepicker, setDatepicker] = useState(false)
+  const [datepickerTitle, setDatepickerTitle] = useState('Past 6 Months')
 
   const getAllLaunches = async () => {
     setloading(true)
@@ -54,9 +57,27 @@ const Fliters = ({ setLaunchData }) => {
 
     setloading(false)
   }
+  const getLaunchDataByDuration = async month => {
+    const end = new Date()
+    const start = new Date()
+    start.setMonth(end.getMonth() - month)
+    setloading(true)
+    const res = await axios.get(
+      `https://api.spacexdata.com/v3/launches/?start=${start}&end=${end}`
+    )
+    setLaunchData(res.data)
+    setDatepicker(false)
+    setDatepickerTitle(`Past ${month < 1 ? 'week' : `${month} months`} `)
+    setloading(false)
+  }
   return (
     <div className='fliters'>
-      <div className='fliters__item'>
+      <div
+        className='fliters__item'
+        onClick={() => {
+          setDatepicker(!datepicker)
+        }}
+      >
         <svg
           width='16'
           height='16'
@@ -69,7 +90,7 @@ const Fliters = ({ setLaunchData }) => {
             fill='#4B5563'
           />
         </svg>
-        <p>Past 6 Months</p>
+        <p>{datepickerTitle}</p>
         <svg
           width='16'
           height='16'
@@ -82,8 +103,36 @@ const Fliters = ({ setLaunchData }) => {
             fill='#4B5563'
           />
         </svg>
+        <div className='dropdown'>
+          <div
+            className={`dropdown__content ${
+              datepicker ? 'dropdown__show' : ''
+            }`}
+          >
+            <button onClick={() => getLaunchDataByDuration(0.25)}>
+              Past Week
+            </button>
+            <button onClick={() => getLaunchDataByDuration(3)}>
+              Past 3 Months
+            </button>
+            <button onClick={() => getLaunchDataByDuration(6)}>
+              Past 6 Months
+            </button>
+            <button onClick={() => getLaunchDataByDuration(12)}>
+              Past Year
+            </button>
+            <button onClick={() => getLaunchDataByDuration(24)}>
+              Past 2 Years
+            </button>
+          </div>
+        </div>
       </div>
-      <div className='fliters__item'>
+      <div
+        className='fliters__item'
+        onClick={() => {
+          setDropdown(!dropdown)
+        }}
+      >
         <svg
           width='16'
           height='16'
@@ -97,22 +146,19 @@ const Fliters = ({ setLaunchData }) => {
           />
         </svg>
         <p>{dropdownTitle}</p>
+        <svg
+          width='16'
+          height='16'
+          viewBox='0 0 16 16'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M7.99999 8.78135L11.3 5.48135L12.2427 6.42402L7.99999 10.6667L3.75732 6.42402L4.69999 5.48135L7.99999 8.78135Z'
+            fill='#4B5563'
+          />
+        </svg>
         <div className='dropdown'>
-          <svg
-            width='16'
-            height='16'
-            viewBox='0 0 16 16'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-            onClick={() => {
-              setDropdown(!dropdown)
-            }}
-          >
-            <path
-              d='M7.99999 8.78135L11.3 5.48135L12.2427 6.42402L7.99999 10.6667L3.75732 6.42402L4.69999 5.48135L7.99999 8.78135Z'
-              fill='#4B5563'
-            />
-          </svg>
           <div
             className={`dropdown__content ${dropdown ? 'dropdown__show' : ''}`}
           >
