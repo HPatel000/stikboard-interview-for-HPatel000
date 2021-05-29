@@ -31,6 +31,21 @@ body {
   color: #92400f;
 }
 
+.loader {
+  animation: rotation 2.5s linear infinite;
+  display: block;
+  margin: 5rem auto;
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(360deg);
+  }
+}
+
 .form__page {
   height: 100vh;
   display: flex;

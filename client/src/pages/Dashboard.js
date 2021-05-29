@@ -5,6 +5,7 @@ import axios from 'axios'
 import Modal from '../components/Modal'
 import ReactPaginate from 'react-paginate'
 import Fliters from '../components/Fliters'
+import Loader from '../components/Loader'
 
 const Dashboard = props => {
   const [modalShow, setModalShow] = useState(false)
@@ -16,56 +17,67 @@ const Dashboard = props => {
   const [perPage] = useState(10)
   const [pageCount, setPageCount] = useState(0)
 
-  const { user } = useContext(GlobalContext)
+  const { user, loading, setloading } = useContext(GlobalContext)
 
   const getLaunchData = async () => {
+    setloading(true)
     const res = await axios.get('https://api.spacexdata.com/v3/launches')
     setLaunchData(res.data)
+    setloading(false)
   }
 
   const getData = async () => {
-    const pageData = launchData
-    const slice = pageData?.slice(
+    const slice = launchData?.slice(
       (offset - 1) * 10,
       (offset - 1) * 10 + perPage
     )
-    // console.log(slice)
-    const postData = slice?.map(data => (
-      <tr
-        key={data.launch_date_utc}
-        onClick={() => {
-          setModalShow(true)
-          setModalData(data)
-        }}
-      >
-        <td>{data.flight_number}</td>
-        <td>
-          {new Date(data.launch_date_utc)
-            .toISOString()
-            .replace(/T/, ' at ')
-            .replace(/\..+/, '')}
-        </td>
-        <td>{data.launch_site.site_name}</td>
-        <td>{data.mission_name}</td>
-        <td>{data.rocket.second_stage.payloads[0].orbit}</td>
-        {data.upcoming ? (
-          <td>
-            <small className='badge badge__yellow'>Upcoming</small>
+    let postData = null
+    if (slice.length === 0) {
+      postData = (
+        <tr>
+          <td colSpan='7'>
+            <p>No results found for specified filter.</p>
           </td>
-        ) : !data.launch_success ? (
+        </tr>
+      )
+    } else {
+      postData = slice?.map(data => (
+        <tr
+          key={data.launch_date_utc}
+          onClick={() => {
+            setModalShow(true)
+            setModalData(data)
+          }}
+        >
+          <td>{data.flight_number}</td>
           <td>
-            <small className='badge badge__red'>Failed</small>
+            {new Date(data.launch_date_utc)
+              .toISOString()
+              .replace(/T/, ' at ')
+              .replace(/\..+/, '')}
           </td>
-        ) : (
-          <td>
-            <small className='badge badge__green'>Success</small>
-          </td>
-        )}
-        <td>{data.rocket.rocket_name}</td>
-      </tr>
-    ))
+          <td>{data.launch_site.site_name}</td>
+          <td>{data.mission_name}</td>
+          <td>{data.rocket.second_stage.payloads[0].orbit}</td>
+          {data.upcoming ? (
+            <td>
+              <small className='badge badge__yellow'>Upcoming</small>
+            </td>
+          ) : !data.launch_success ? (
+            <td>
+              <small className='badge badge__red'>Failed</small>
+            </td>
+          ) : (
+            <td>
+              <small className='badge badge__green'>Success</small>
+            </td>
+          )}
+          <td>{data.rocket.rocket_name}</td>
+        </tr>
+      ))
+    }
     setPageData(postData)
-    setPageCount(Math.ceil(pageData.length / perPage))
+    setPageCount(Math.ceil(launchData.length / perPage))
   }
 
   const handlePageClick = e => {
@@ -104,7 +116,17 @@ const Dashboard = props => {
               <th>Rocket</th>
             </tr>
           </thead>
-          <tbody>{pageData}</tbody>
+          <tbody>
+            {loading ? (
+              <tr>
+                <td colSpan='7'>
+                  <Loader />
+                </td>
+              </tr>
+            ) : (
+              <Fragment>{pageData}</Fragment>
+            )}
+          </tbody>
         </table>
         <ReactPaginate
           previousLabel={'<<'}
@@ -129,7 +151,5 @@ const Dashboard = props => {
     </Fragment>
   )
 }
-
-// TODO: loading and empty state
 
 export default Dashboard

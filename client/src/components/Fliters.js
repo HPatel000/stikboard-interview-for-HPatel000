@@ -1,39 +1,58 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
+import GlobalContext from '../context/GlobalContext'
 
 const Fliters = ({ setLaunchData }) => {
+  const { loading, setloading } = useContext(GlobalContext)
+
   const [dropdown, setDropdown] = useState(false)
   const [dropdownTitle, setDropdownTitle] = useState('All Launches')
 
   const getAllLaunches = async () => {
+    setloading(true)
+
     const res = await axios.get('https://api.spacexdata.com/v3/launches')
     setLaunchData(res.data)
     setDropdownTitle('All Launches')
     setDropdown(false)
+
+    setloading(false)
   }
   const getUpcomingLaunches = async () => {
+    setloading(true)
+
     const res = await axios.get(
       'https://api.spacexdata.com/v3/launches/upcoming'
     )
     setLaunchData(res.data)
     setDropdownTitle('Upcoming Launches')
     setDropdown(false)
+
+    setloading(false)
   }
   const getSuccessfulLaunches = async () => {
+    setloading(true)
+
     const res = await axios.get(
       'https://api.spacexdata.com/v3/launches/?launch_success=true'
     )
     setLaunchData(res.data)
     setDropdownTitle('Successful Launches')
     setDropdown(false)
+
+    setloading(false)
   }
   const getFailedLaunches = async () => {
+    setloading(true)
+
     const res = await axios.get(
       'https://api.spacexdata.com/v3/launches/?launch_success=false'
     )
     setLaunchData(res.data)
     setDropdownTitle('Failed Launches')
     setDropdown(false)
+
+    setloading(false)
   }
   return (
     <div className='fliters'>

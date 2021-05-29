@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import GlobalContext from '../context/GlobalContext'
 import { Link } from 'react-router-dom'
+import Loader from '../components/Loader'
 
 const Signin = props => {
   const [email, setEmail] = useState('')

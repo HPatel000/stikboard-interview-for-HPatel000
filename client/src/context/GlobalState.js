@@ -72,6 +72,13 @@ const GlobalState = props => {
     })
   }
 
+  const setloading = data => {
+    dispatch({
+      type: 'SET_LOADING',
+      payload: data,
+    })
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -81,6 +88,7 @@ const GlobalState = props => {
         userSignup,
         userLogin,
         logout,
+        setloading,
       }}
     >
       {props.children}
