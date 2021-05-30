@@ -15,12 +15,14 @@ const userSchema = new mongoose.Schema({
   },
 })
 
+// encrypt the password before user data saved to database using bcrypt
 userSchema.pre('save', async function (next) {
   const salt = await bcrypt.genSalt()
   this.password = await bcrypt.hash(this.password, salt)
   next()
 })
 
+// checks the password entered by user is correct or not
 userSchema.statics.login = async function (email, password) {
   const user = await this.findOne({ email })
   if (user) {

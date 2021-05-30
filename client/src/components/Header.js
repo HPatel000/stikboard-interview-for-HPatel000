@@ -5,6 +5,7 @@ const Header = () => {
   const { logout } = useContext(GlobalContext)
   return (
     <div className='header'>
+      {/* spacex logo */}
       <svg
         className='header__logo'
         width='260'
@@ -57,6 +58,8 @@ const Header = () => {
           </clipPath>
         </defs>
       </svg>
+
+      {/* logout link */}
       <a onClick={() => logout()} className='logout__btn'>
         Logout
       </a>

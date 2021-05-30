@@ -13,7 +13,7 @@ function App() {
         <Switch>
           <Route path='/signup' component={Signup} />
           <Route path='/signin' component={Signin} />
-          <Route path='/' component={Dashboard} />
+          <Route path='/*' component={Dashboard} />
         </Switch>
       </Router>
     </GlobalState>

@@ -167,6 +167,11 @@ th {
   text-align: left;
 }
 
+.empty__data {
+  text-align: center;
+  padding: 5rem 0;
+}
+
 /* PAGINATION */
 
 .pagination {

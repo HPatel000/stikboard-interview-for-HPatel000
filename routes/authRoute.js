@@ -2,6 +2,7 @@ const { Router } = require('express')
 const router = Router()
 const User = require('../models/User')
 
+// /auth/signup route, save the new user to data base
 router.post('/signup', async (req, res) => {
   const { email, password } = req.body
   try {
@@ -23,6 +24,7 @@ router.post('/signup', async (req, res) => {
   }
 })
 
+// /auth/signin route, checks user emailid and password correct or not
 router.post('/signin', async (req, res) => {
   const { email, password } = req.body
   try {

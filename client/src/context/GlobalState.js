@@ -13,8 +13,6 @@ const GlobalState = props => {
   const [state, dispatch] = useReducer(GlobalReducer, initailState)
 
   const userSignup = async (email, password) => {
-    console.log(email)
-    console.log(password)
     const config = {
       headers: {
         'Content-Type': 'application/json',

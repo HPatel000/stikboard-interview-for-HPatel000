@@ -68,6 +68,7 @@ const Fliters = ({ setLaunchData }) => {
 
   return (
     <div className='fliters'>
+      {/* dropdown for duration */}
       <div
         className='fliters__item'
         onClick={() => {
@@ -101,6 +102,8 @@ const Fliters = ({ setLaunchData }) => {
           </div>
         </div>
       </div>
+
+      {/* dropdown for launch type */}
       <div
         className='fliters__item'
         onClick={() => {

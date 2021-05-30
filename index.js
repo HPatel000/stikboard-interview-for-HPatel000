@@ -8,6 +8,7 @@ const port = process.env.PORT || 5000
 const app = express()
 app.use(express.json({ extended: true }))
 
+// connect to mongodb
 mongoose
   .connect(process.env.MONGOURI, {
     useNewUrlParser: true,
@@ -22,6 +23,7 @@ mongoose
 // routes
 app.use('/auth', require('./routes/authRoute'))
 
+// for production
 app.use(express.static(path.join(__dirname, 'client', 'build')))
 
 app.get('*', (req, res) => {

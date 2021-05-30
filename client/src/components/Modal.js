@@ -1,18 +1,19 @@
 import React from 'react'
 
-const Modal = ({ setModalShow, setModalData, data }) => {
-  console.log(data)
+const Modal = ({ setModalData, data }) => {
   return (
     <div className='modal__content'>
+      {/* modal close button */}
       <button
         className='modal__close'
         onClick={() => {
-          setModalShow(false)
           setModalData(null)
         }}
       >
         &times;
       </button>
+
+      {/* mission metadata */}
       <div className='modal__header'>
         <img src={data.links.mission_patch_small} alt='Mission Patch' />
         <div>
@@ -33,10 +34,14 @@ const Modal = ({ setModalShow, setModalData, data }) => {
           </p>
         )}
       </div>
+
+      {/* mission details */}
       <div className='modal__para'>
         {data.details} {'  '}
         <a href={data.links.wikipedia}>Wikipedia</a>
       </div>
+
+      {/* mission information */}
       <div className='modal__info'>
         <div className='modal__info__row'>
           <p>Flight Number</p>
